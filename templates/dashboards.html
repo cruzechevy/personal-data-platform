@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Personal Data Dashboards</h1>
+
+<h3>Travel Stats</h3>
+
+<p>Total Trips: {{total_trips}}</p>
+
+<p>Average Trip Cost: {{avg_cost}}</p>
+
+{{travel_chart | safe}}
+
+<h3>Swing Trading Stats</h3>
+
+<p>Win Rate: {{win_rate}}%</p>
+
+{{trade_chart | safe}}
+
+{% endblock %}

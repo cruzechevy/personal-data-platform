@@ -1,0 +1,38 @@
+name: Update Personal Data
+
+on:
+  schedule:
+    - cron: '0 3 * * *'   # runs daily (UTC)
+  workflow_dispatch:      # allows manual run
+
+jobs:
+
+  update-data:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install requests
+
+      - name: Run pipeline
+        run: |
+          python pipelines/update_data.py
+
+      - name: Commit updated data
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add data/github_stats.json
+          git commit -m "Update GitHub stats"
+          git push

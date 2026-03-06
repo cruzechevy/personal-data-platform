@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Trips</h1>
+
+<table class="table">
+
+<tr>
+<th>Trip</th>
+<th>Location</th>
+<th>Days</th>
+<th>Cost</th>
+</tr>
+
+{% for t in trips %}
+
+<tr>
+
+<td>
+
+<a href="/travel/{{t.trip_name}}">
+
+{{t.trip_name}}
+
+</a>
+
+</td>
+
+<td>{{t.location}}</td>
+<td>{{t.days}}</td>
+<td>{{t.cost}}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}
